@@ -6,9 +6,6 @@ public class ex002 {
         int d = 2;
         System.out.println(ex2(a, b, c, d));
 
-
-        // System.out.println(e);
-
     }
 
     public static String ex2(int a, int b, int c, int d) {
