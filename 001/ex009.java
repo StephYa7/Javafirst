@@ -14,7 +14,7 @@ public class ex009 {
         int len = arr.length;
 
         for (int i = len / 2 - 1; i >= 0; i--)
-            heapify(arr, len, i);
+            stack(arr, len, i);
 
 
         for (int i = len - 1; i >= 0; i--) {
@@ -22,11 +22,11 @@ public class ex009 {
             arr[0] = arr[i];
             arr[i] = temp;
 
-            heapify(arr, i, 0);
+            stack(arr, i, 0);
         }
     }
 
-    void heapify(int arr[], int n, int i) {
+    public void stack(int arr[], int n, int i) {
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2; 
@@ -42,7 +42,7 @@ public class ex009 {
             arr[i] = arr[largest];
             arr[largest] = swap;
 
-            heapify(arr, n, largest);
+            stack(arr, n, largest);
         }
     }
 }
