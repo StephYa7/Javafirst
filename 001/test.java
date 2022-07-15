@@ -8,9 +8,8 @@
 
 public class test {
     public static void main(String[] args) {
-        String Start = "<{a}+{(d*3)}>";
+        String Start = "{a+]}{(d*3)}";
         Check(Start);
-
     }
     public static void Check(String start) {
     int countfirst = 0;
@@ -22,19 +21,19 @@ public class test {
             if (start.charAt(i)== '(') countfirst++;
             if (start.charAt(i)== ')') countfirst--;
             if (countfirst<0){ System.out.println("false");
-                break ;}
+                System.exit(1); ;}
             if (start.charAt(i)== '{') countsecond++;
             if (start.charAt(i)== '}') countsecond--;
             if (countsecond<0){ System.out.println("false");
-                break ;}
+                System.exit(1) ;}
             if (start.charAt(i)== '[') counthird++;
             if (start.charAt(i)== ']') counthird--;
             if (counthird<0){ System.out.println("false");
-                break ;}
+                System.exit(1) ;}
             if (start.charAt(i)== '<') countfourth++;
             if (start.charAt(i)== '>') countfourth--;
             if (counthird<0){ System.out.println("false");
-                break ;}
+                System.exit(1) ;}
 
         }
     if (countfirst!=0 || countsecond!=0 || counthird!=0 || countfourth !=0 ) System.out.println("false");
