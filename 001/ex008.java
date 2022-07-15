@@ -1,6 +1,6 @@
 public class ex008 {
     public static void main(String[] args) {
-        int[][] board = new int[5][5];
+        int[][] board = new int[8][8];
         for (int i = 0; i < board[0].length; i++) {
             for (int j = 0; j < board[1].length; j++)
                 setHorse(board, i, j, 1);

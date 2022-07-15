@@ -1,48 +1,43 @@
+// 12 Написать программу, определяющую правильность расстановки скобок в выражении.
+// Пример 1: a+(d*3) - истина
+// Пример 2: [a+(1*3) - ложь
+// Пример 3: [6+(3*3)] - истина
+// Пример 4: {a}[+]{(d*3)} - истина
+// Пример 5: <{a}+{(d*3)}> - истина
+// Пример 6: {a+]}{(d*3)} - ложь
 
 public class test {
     public static void main(String[] args) {
-        String start = "2? + ?5 = 9?";
+        String Start = "<{a}+{(d*3)}>";
+        Check(Start);
 
-        String[] strmed = start.split(" ");
-        StringBuilder q = new StringBuilder(strmed[0]);
-        StringBuilder w = new StringBuilder(strmed[2]);
-        StringBuilder e = new StringBuilder(strmed[4]);
+    }
+    public static void Check(String start) {
+    int countfirst = 0;
+    int countsecond = 0;
+    int counthird = 0;
+    int countfourth = 0;
 
-        int indexq = q.indexOf("?");
-        int indexw = w.indexOf("?");
-        int indexe = e.indexOf("?");
-        char quest = (char) 48;
+        for (int i = 0; i < start.length(); i++){
+            if (start.charAt(i)== '(') countfirst++;
+            if (start.charAt(i)== ')') countfirst--;
+            if (countfirst<0){ System.out.println("false");
+                break ;}
+            if (start.charAt(i)== '{') countsecond++;
+            if (start.charAt(i)== '}') countsecond--;
+            if (countsecond<0){ System.out.println("false");
+                break ;}
+            if (start.charAt(i)== '[') counthird++;
+            if (start.charAt(i)== ']') counthird--;
+            if (counthird<0){ System.out.println("false");
+                break ;}
+            if (start.charAt(i)== '<') countfourth++;
+            if (start.charAt(i)== '>') countfourth--;
+            if (counthird<0){ System.out.println("false");
+                break ;}
 
-        if (indexq >0){
-        q.setCharAt(indexq, quest);}
-        if (indexw>0){
-        w.setCharAt(indexw, quest);}
-        if (indexw>0){
-        e.setCharAt(indexe, quest);}
-
-        // if (indexq>0){
-            
-        for (int i = 48; i < 58; i++) {
-            char buff = (char) (i);
-            q.setCharAt(indexq, buff);
-
-            for (int s = 48; s < 58; s++) {
-                char buff2 = (char) (s);
-                w.setCharAt(indexw, buff2);
-
-                for (int a = 48; a < 58; a++) {
-                    char buff3 = (char) (a);
-                    e.setCharAt(indexe, buff3);
-
-                    int f1 = Integer.parseInt(q.toString());
-                    int f2 = Integer.parseInt(w.toString());
-                    int f3 = Integer.parseInt(e.toString());
-
-                    if (f1 + f2 == f3) {
-                        System.out.println(f1 + "+" + f2 + "=" + f3);
-                    }
-                }
-            }
         }
+    if (countfirst!=0 || countsecond!=0 || counthird!=0 || countfourth !=0 ) System.out.println("false");
+    else System.out.println("true");
     }
 }
