@@ -3,7 +3,7 @@ import java.util.TreeMap;
 public class RomanNum {
 
   public static void main(String[] args) {
-    System.out.println(RomanNum.toRoman(14));
+    System.out.println(RomanNum.toRoman(322));
   }
 
   private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
