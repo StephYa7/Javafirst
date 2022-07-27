@@ -1,42 +1,52 @@
-// 12 Написать программу, определяющую правильность расстановки скобок в выражении.
-// Пример 1: a+(d*3) - истина
-// Пример 2: [a+(1*3) - ложь
-// Пример 3: [6+(3*3)] - истина
-// Пример 4: {a}[+]{(d*3)} - истина
-// Пример 5: <{a}+{(d*3)}> - истина
-// Пример 6: {a+]}{(d*3)} - ложь
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 public class test {
+    static HashMap<Integer, ArrayList<String>> pp = new HashMap<>();    
+
+
     public static void main(String[] args) {
-        String Start = "{a+]}{(d*3)}";
-        Check(Start);
+        pp.put(202365678, new ArrayList<String>(Arrays.asList("ALISSON","BECKER","02/10/1992")) );
+        pp.put(325334435, new ArrayList<String>(Arrays.asList("IBRAHIMA","KONATE","25/05/1999")) );
+        pp.put(353324332, new ArrayList<String>(Arrays.asList("JOE","GOMEZ","23/05/1997")) );
+        pp.put(326326234, new ArrayList<String>(Arrays.asList("KOSTAS","TSIMIKAS","12/05/1996")) );
+        pp.put(663566532, new ArrayList<String>(Arrays.asList("CALVIN","RAMSAY","31/07/2003")) );
+        pp.put(202323338, new ArrayList<String>(Arrays.asList("NABY","KEITA","10/02/1995")) );
+        pp.put(202363478, new ArrayList<String>(Arrays.asList("CURTIS","JONES","30/01/2001")) );
+        pp.put(205334444, new ArrayList<String>(Arrays.asList("LUIS","DIAZ","13/01/1997")) );
+        pp.put(236343455, new ArrayList<String>(Arrays.asList("DARWIN","NUNEZ","24/06/1999")) );
+        // System.out.println(pp.get(202365678));  
+        // LocalDate today = LocalDate.now();
+        // System.out.println(today);
+        System.out.println();
+
+    
+
+        LocalDate today = LocalDate.now();
+
+        for(Integer item : pp.keySet()){
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH);
+            LocalDate buf = LocalDate.parse(pp.get(item).get(2),format);
+            LocalDate resultDate = compare(today, buf);
+
+            System.out.println(resultDate);
+            int age2 = resultDate.getYear();
+            System.out.println(age2);
+          
+           }        
+
     }
-    public static void Check(String start) {
-    int countfirst = 0;
-    int countsecond = 0;
-    int counthird = 0;
-    int countfourth = 0;
 
-        for (int i = 0; i < start.length(); i++){
-            if (start.charAt(i)== '(') countfirst++;
-            if (start.charAt(i)== ')') countfirst--;
-            if (countfirst<0){ System.out.println("false");
-                System.exit(1); ;}
-            if (start.charAt(i)== '{') countsecond++;
-            if (start.charAt(i)== '}') countsecond--;
-            if (countsecond<0){ System.out.println("false");
-                System.exit(1) ;}
-            if (start.charAt(i)== '[') counthird++;
-            if (start.charAt(i)== ']') counthird--;
-            if (counthird<0){ System.out.println("false");
-                System.exit(1) ;}
-            if (start.charAt(i)== '<') countfourth++;
-            if (start.charAt(i)== '>') countfourth--;
-            if (counthird<0){ System.out.println("false");
-                System.exit(1) ;}
-
-        }
-    if (countfirst!=0 || countsecond!=0 || counthird!=0 || countfourth !=0 ) System.out.println("false");
-    else System.out.println("true");
+    static LocalDate compare(LocalDate dateOfSession, LocalDate compared)
+    {
+        long resultDays = ChronoUnit.DAYS.between(compared, dateOfSession);
+        return LocalDate.of(0, 1, 1).plusDays(resultDays - 1);
     }
 }
