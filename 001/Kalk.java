@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
@@ -7,9 +6,8 @@ public class Kalk {
 
     public static void main(String[] args) {
 
-        String primer = "2 + 3 - 4 * 5 + 10";
-        String primer2 = postfixFrom(primer);
-        System.out.println(eval(primer2));
+        String primer = "2 + 3 - 4 * 5 + 10 * 10";
+        System.out.println(eval(postfixFrom(primer).split(" ")));
 
     }
 
@@ -34,7 +32,7 @@ public class Kalk {
         Stack<String> stackOperation = new Stack<>();
         StringBuilder result = new StringBuilder();
         String[] tokens = infixForm.split(" ");
-        System.out.println(Arrays.toString(tokens));
+
         for (String string : tokens) {
             if ("(".equals(string)) {
                 stackOperation.push("(");
@@ -59,7 +57,6 @@ public class Kalk {
         while (!stackOperation.isEmpty()) {
             result.append(stackOperation.pop()).append(" ");
         }
-        System.out.println(stackOperation);
         return result.toString().trim();
     }
 
@@ -79,8 +76,9 @@ public class Kalk {
             } else {
                 nums.add(Integer.parseInt(token));
             }
-            return result;
+
         }
+        return result;
 
     }
 
@@ -96,6 +94,7 @@ public class Kalk {
             case "/":
                 return first / second;
         }
+        return first + second;
 
     }
 }
