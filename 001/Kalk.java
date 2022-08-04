@@ -19,7 +19,7 @@ public class Kalk {
         priorituMap.put("-", 1);
         priorituMap.put("*", 2);
         priorituMap.put("/", 2);
-        priorituMap.put("(", 3);
+        priorituMap.put(")", 3);
 
         operation.add("+");
         operation.add("-");
