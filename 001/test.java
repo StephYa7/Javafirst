@@ -33,51 +33,24 @@ public class test {
         }
 
         while (Integer.parseInt(board[xFinish][yFinish]) > 1) {
-            System.out.println(board[xFinish][yFinish]);
 
-            if (isNumber(board[xFinish - 1][yFinish]) == true) {
-                System.out.println(board[xFinish-1][yFinish]);
-                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
-                    xFinish -= 1;
-                    continue;                    
-                }
+            if ((isNumber(board[xFinish - 1][yFinish]) == true) && (Integer.parseInt(board[xFinish - 1][yFinish])
+                    + 1) == (Integer.parseInt(board[xFinish][yFinish]))) {
+                xFinish -= 1;
+            } else if ((isNumber(board[xFinish + 1][yFinish]) == true) && (Integer.parseInt(board[xFinish + 1][yFinish])
+                    + 1) == (Integer.parseInt(board[xFinish][yFinish]))) {
+                xFinish += 1;
+            } else if ((isNumber(board[xFinish][yFinish - 1]) == true) && (Integer.parseInt(board[xFinish][yFinish - 1])
+                    + 1) == (Integer.parseInt(board[xFinish][yFinish]))) {
+                yFinish -= 1;
+            } else if ((isNumber(board[xFinish][yFinish + 1]) == true) && (Integer.parseInt(board[xFinish][yFinish + 1])
+                    + 1) == (Integer.parseInt(board[xFinish][yFinish]))) {
+                xFinish += 1;
             }
-            if (isNumber(board[xFinish + 1][yFinish]) == true) {
-                System.out.println(board[xFinish+1][yFinish]);
-                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
-                    xFinish += 1;
-                    continue;
-                    
-                }
-            }
-            if (isNumber(board[xFinish][yFinish + 1]) == true) {
-                System.out.println(board[xFinish][yFinish-1]);
-                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
-                    yFinish += 1;
-                    continue;
-                    
-                }
-            }
-            if (isNumber(board[xFinish][yFinish - 1]) == true) {
-                System.out.println(board[xFinish][yFinish+1]);
-                if (Integer.parseInt(board[xFinish][yFinish + 1]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
-                    yFinish -= 1;
-                    continue;
-                    
-                }
-            }
-
-            
-
-            // result.add("{ x =" + Integer.toString(xFinish));
-            // result.add("{ y =" + Integer.toString(yFinish) + "}" );
-            // System.out.println(result);
-
-
+            result.add("{ x = " + Integer.toString(xFinish));
+            result.add(" y = " + Integer.toString(yFinish) + "}");
         }
-
         return result;
-
     }
 
     private static boolean isNumber(String s) throws NumberFormatException {
@@ -88,10 +61,6 @@ public class test {
             return false;
         }
     }
-
-    // public class CoordPair<X,Y>{
-
-    // }
 
     public static void setBoard(String[][] board, String xStart, String yStart) {
         int count = 1;
@@ -158,8 +127,6 @@ public class test {
         board[Integer.parseInt(xStart)][Integer.parseInt(yStart)] = "0";
     }
 
-    // public static String[][] board = new String[xSize][ySize];
-
     public static void paintBoard(String[][] board, int xFinish, int yFinish) {
         Random random = new Random();
         for (int i = 0; i < board.length; i++) {
@@ -169,7 +136,6 @@ public class test {
                     board[i][j] = "X";
                 else
                     board[i][j] = "O";
-
             }
         }
         for (int i = 0; i < board.length; i++) {
@@ -182,9 +148,6 @@ public class test {
         }
 
         board[xFinish][yFinish] = "O";
-        // board[random.nextInt(board.length-1)][random.nextInt(board[0].length-1)] =
-        // "F";
-
     }
 
     public static void showBoard(String[][] board) {
