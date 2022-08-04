@@ -1,36 +1,102 @@
-
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
 public class test {
     public static void main(String[] args) {
 
-
         String xStart = "1";
         String yStart = "1";
+        int xSize = 12;
+        int ySize = 12;
+        int xFinish = 9;
+        int yFinish = 9;
+        String[][] board = new String[xSize][ySize];
 
-        paintBoard(board);
+        paintBoard(board, xFinish, yFinish);
 
-        setBoard(board,xStart,yStart);
+        setBoard(board, xStart, yStart);
 
         showBoard(board);
 
+        System.out.println(wayToStart(board, xFinish, yFinish));
+
     }
 
-    // public static List wayToStart(String[][], int finish) {
-        
-    // }
+    public static ArrayList<String> wayToStart(String[][] board, int xFinish, int yFinish) {
+
+        ArrayList<String> result = new ArrayList<String>();
+
+        if (isNumber(board[xFinish][yFinish]) == false) {
+            result.add("Нет решений");
+            return result;
+        }
+
+        while (Integer.parseInt(board[xFinish][yFinish]) > 1) {
+            System.out.println(board[xFinish][yFinish]);
+
+            if (isNumber(board[xFinish - 1][yFinish]) == true) {
+                System.out.println(board[xFinish-1][yFinish]);
+                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
+                    xFinish -= 1;
+                    continue;                    
+                }
+            }
+            if (isNumber(board[xFinish + 1][yFinish]) == true) {
+                System.out.println(board[xFinish+1][yFinish]);
+                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
+                    xFinish += 1;
+                    continue;
+                    
+                }
+            }
+            if (isNumber(board[xFinish][yFinish + 1]) == true) {
+                System.out.println(board[xFinish][yFinish-1]);
+                if (Integer.parseInt(board[xFinish - 1][yFinish]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
+                    yFinish += 1;
+                    continue;
+                    
+                }
+            }
+            if (isNumber(board[xFinish][yFinish - 1]) == true) {
+                System.out.println(board[xFinish][yFinish+1]);
+                if (Integer.parseInt(board[xFinish][yFinish + 1]) + 1 == Integer.parseInt(board[xFinish][yFinish])) {
+                    yFinish -= 1;
+                    continue;
+                    
+                }
+            }
+
+            
+
+            // result.add("{ x =" + Integer.toString(xFinish));
+            // result.add("{ y =" + Integer.toString(yFinish) + "}" );
+            // System.out.println(result);
+
+
+        }
+
+        return result;
+
+    }
+
+    private static boolean isNumber(String s) throws NumberFormatException {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     // public class CoordPair<X,Y>{
-        
+
     // }
 
-    public static void setBoard(String[][] board,String xStart , String yStart ) {
+    public static void setBoard(String[][] board, String xStart, String yStart) {
         int count = 1;
         Stack<String> bufSetNext = new Stack<>();
         Stack<String> bufSet = new Stack<>();
-
-
 
         bufSetNext.push(xStart);
         bufSetNext.push(yStart);
@@ -92,9 +158,9 @@ public class test {
         board[Integer.parseInt(xStart)][Integer.parseInt(yStart)] = "0";
     }
 
-    static String[][] board = new String[9][9];
+    // public static String[][] board = new String[xSize][ySize];
 
-    public static void paintBoard(String[][] board) {
+    public static void paintBoard(String[][] board, int xFinish, int yFinish) {
         Random random = new Random();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -115,7 +181,7 @@ public class test {
             }
         }
 
-        board[board.length - 2][board[0].length - 2] = "F";
+        board[xFinish][yFinish] = "O";
         // board[random.nextInt(board.length-1)][random.nextInt(board[0].length-1)] =
         // "F";
 
